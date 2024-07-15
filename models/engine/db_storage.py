@@ -69,11 +69,10 @@ class DBStorage:
         
     def count(self, cls=None):
         """ Counts the number of objects """
-        if cls is None:
-            count = len(self.__session.query(BaseModel).all())
-        else:
-            count = len(self.__session.query(cls).all())
-            return count
+        count = 0
+        class_dict = self.all(cls)
+        count = len(class_dict)
+        return count
 
     def delete(self, obj=None):
         """delete from the current database session obj if not None"""

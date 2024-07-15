@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 """ This is used to connect to the API """
 
 from flask import Flask, Blueprint

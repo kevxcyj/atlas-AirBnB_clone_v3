@@ -67,8 +67,11 @@ class FileStorage:
 
     def get(self, cls, id):
         """ Retrieves object """
-        if cls in classes:
-            return self.__objects.get(f"{cls}.{id}", None)
+        string_dict = self.all(cls)
+        for key, value in string_dict.items():
+            if key == cls + "." + id:
+                return value
+
 
     def count(self, cls=None):
         """ Counts the number of objects """

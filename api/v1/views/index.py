@@ -2,15 +2,15 @@
 """ Retuns status for app_views """
 
 from api.v1.views import app_views
-from flask import jsonify
+from flask import jsonify, Blueprint
 from models import storage
 
 @app_views.route('/status', strict_slashes=False)
-def status():
+def stat():
     return jsonify({"status": "OK"})
 
 @app_views.route('/stats', methods=['GET'], strict_slashes=False)
-def status_count():
+def stat_count():
     """ Endpoint that retrieves number of each objects """
     counts_stats = {
         'amenities': storage.count('Amenity'),

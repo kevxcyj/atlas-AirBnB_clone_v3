@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ This is used to connect to the API """
 
+
 from flask import Flask, Blueprint
 from models import storage
 from api.v1.views import app_views

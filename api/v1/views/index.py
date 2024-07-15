@@ -12,7 +12,7 @@ def status():
 @app_views.route('/stats', methods=['GET'], strict_slashes=False)
 def status_count():
     """ Endpoint that retrieves number of each objects """
-    count_stats = {
+    counts_atr = {
         'amenities': storage.count('Amenity'),
         'cities': storage.count('City'),
         'places': storage.count('Place'),
@@ -20,7 +20,7 @@ def status_count():
         'states': storage.count('State'),
         'users': storage.count('User')
     }
-    return jsonify(count_stats)
+    return jsonify(counts_atr)
 
 
 if __name__ == "__main__":

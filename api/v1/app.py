@@ -2,19 +2,27 @@
 """ This is used to connect to the API """
 
 
-from flask import Flask, Blueprint
+from flask import Flask, Blueprint, jsonify
 from models import storage
+from flask_cors import CORS
+from api.v1.views import app_views
 import os
+
 
 host = os.getenv('HBNB_API_HOST', '0.0.0.0')
 port = int(os.getenv('HBNB_API_PORT', '5000'))
+cors = CORS(app, resources={'/*': {'origins': '0.0.0.0'}})
 
 app = Flask(__name__)
-app_views = Blueprint('app_views', __name__, url_prefix='/api/v1')
+app.register_blueprint(app_views, url_prefix="/api/v1")
 
 @app.teardown_appcontext
-def close_storage(exception):
+def close_storage(code):
     storage.close()
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return jsonify({"error": "Not found"}), 404
 
 if __name__ == "__main__":
     app.run(host=host, port=port, threaded=True)

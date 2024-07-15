@@ -4,7 +4,6 @@
 
 from flask import Flask, Blueprint
 from models import storage
-from api.v1.views import app_views
 import os
 
 host = os.getenv('HBNB_API_HOST', '0.0.0.0')

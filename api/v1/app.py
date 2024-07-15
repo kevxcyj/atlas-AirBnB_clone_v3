@@ -5,6 +5,9 @@ from flask import Flask, Blueprint
 from models import storage
 import os
 
+host = os.getenv('HBNB_API_HOST', '0.0.0.0')
+port = int(os.getenv('HBNB_API_PORT', '5000'))
+
 app = Flask(__name__)
 app_views = Blueprint('app_views', __name__, url_prefix='/api/v1')
 

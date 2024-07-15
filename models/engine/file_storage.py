@@ -69,7 +69,7 @@ class FileStorage:
         """ Retrieves object """
         string_dict = self.all(cls)
         for key, value in string_dict.items():
-            if key == cls + "." + id:
+            if key == cls.__name__ + "." + id:
                 return value
 
 

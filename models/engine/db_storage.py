@@ -61,7 +61,7 @@ class DBStorage:
 
     def get(self, cls, id):
         """ Retrieves object """
-        obj_list = self.__session.query(eval(cls)).all()
+        obj_list = self.__session.query(cls).filter_by(id=id).all()
         for obj in obj_list:
             if obj.id == str(id):
                 return obj

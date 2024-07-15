@@ -37,6 +37,8 @@ def del_state(state_id):
 @app_views.route('/states', methods=['POST'], strict_slashes=False)
 def post_state():
     """Returns the new State with the status code 201"""
+    if not request.is_json:
+        abort(400, description="Invalid JSON format")
     new_obj = request.get_json()
     if not new_obj:
         abort(400, "Not a JSON")

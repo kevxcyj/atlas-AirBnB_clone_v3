@@ -41,6 +41,8 @@ def del_city(city_id):
                  methods=['POST'], strict_slashes=False)
 def post_city(state_id):
     """Returns the new City with the status code 201"""
+    if not request.is_json:
+        abort(400, description="Invalid JSON format")
     obj_state = storage.get(State, state_id)
     if not obj_state:
         abort(404)
@@ -61,6 +63,8 @@ def post_city(state_id):
 @app_views.route('/cities/<city_id>', methods=['PUT'], strict_slashes=False)
 def put_city(city_id):
     """Returns the City object with the status code 200"""
+    if not request.is_json:
+        abort(400, description="Invalid JSON format")
     obj = storage.get(City, city_id)
     if not obj:
         abort(404)

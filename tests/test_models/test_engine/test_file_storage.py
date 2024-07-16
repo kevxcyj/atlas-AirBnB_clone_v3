@@ -114,6 +114,7 @@ class TestFileStorage(unittest.TestCase):
             js = f.read()
         self.assertEqual(json.loads(string), json.loads(js))
 
+
 class TestFileStorageMethods(unittest.TestCase):
     def setUp(self):
         """Setup method to initialize FileStorage instance for each test."""

@@ -130,3 +130,13 @@ class TestFileStorageMethods(unittest.TestCase):
         self.file.save()
         retrieved = self.file.get(Place, place.id)
         self.assertEqual(retrieved.name, "Café")
+
+    def test_count_objects_unicode(self):
+        """Test counting objects"""
+        self.file.new(Amenity(name="Étang"))
+        self.file.new(City(name="München"))
+        self.file.save()
+        total_count = self.file.count()
+        self.assertEqual(total_count, 2)
+        amenity_count = self.file.count(Amenity)
+        self.assertEqual(amenity_count, 1)

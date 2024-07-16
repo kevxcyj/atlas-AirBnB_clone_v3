@@ -76,11 +76,11 @@ class FileStorage:
         start = 0
         if cls is not None:
             for key in self.__objects:
-               start += 1
+                    start += 1
         else:
             if cls is None:
-               for key in self.__objects:
-                   start += 1
+                for key in self.__objects:
+                    start += 1
             return start
 
     def close(self):

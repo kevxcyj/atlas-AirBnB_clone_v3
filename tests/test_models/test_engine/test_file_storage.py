@@ -113,3 +113,30 @@ class TestFileStorage(unittest.TestCase):
         with open("file.json", "r") as f:
             js = f.read()
         self.assertEqual(json.loads(string), json.loads(js))
+
+class TestFileStorageMethods(unittest.TestCase):
+    def setUp(self):
+        """Setup method to initialize FileStorage instance for each test."""
+        self.file = FileStorage()
+
+    def tearDown(self):
+        """Reload FileStorage to reset state after each test."""
+        self.file.reload()
+
+    def test_get_object_unicode(self):
+        """Test retrieving an object"""
+        place = Place(name="Café")
+        self.file.new(place)
+        self.file.save()
+        retrieved = self.file.get(Place, place.id)
+        self.assertEqual(retrieved.name, "Café")
+
+    def test_count_objects_unicode(self):
+        """Test counting objects"""
+        self.file.new(Amenity(name="Étang"))
+        self.file.new(City(name="München"))
+        self.file.save()
+        total_count = self.file.count()
+        self.assertEqual(total_count, 2)
+        amenity_count = self.file.count(Amenity)
+        self.assertEqual(amenity_count, 1)

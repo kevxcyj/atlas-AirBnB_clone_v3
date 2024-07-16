@@ -66,7 +66,7 @@ class DBStorage:
             if obj.id == str(id):
                 return obj
         return None
-        
+
     def count(self, cls=None):
         """ Counts the number of objects """
         count = 0

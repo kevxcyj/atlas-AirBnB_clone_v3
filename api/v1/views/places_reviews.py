@@ -43,6 +43,8 @@ def del_review(review_id):
                  methods=['POST'], strict_slashes=False)
 def post_review(place_id):
     """Returns the new Review with the status code 201"""
+    if not request.is_json:
+        abort(400, description="Invalid JSON format")
     obj_place = storage.get(Place, place_id)
     if not obj_place:
         abort(404)
